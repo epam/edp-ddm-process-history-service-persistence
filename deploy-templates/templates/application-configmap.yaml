@@ -1,0 +1,30 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: process-history-service-persistence-properties
+data:
+  config.yaml: |-
+    data-platform:
+      datasource:
+        url: jdbc:postgresql://{{.Values.db.url}}:{{.Values.db.port}}/{{.Values.db.name}}
+        connection-timeout: {{.Values.db.connectionTimeout}}
+      kafka:
+        bootstrap: {{ .Values.kafka.service }}
+        ssl:
+          enabled: {{ .Values.kafka.sslEnabled }}
+          keystore-type: {{ .Values.kafka.sslCertType }}
+          truststore-type: {{ .Values.kafka.sslCertType }}
+          keystore-certificate: {{ .Values.kafka.sslUserCertificate }}
+          keystore-key: {{ .Values.kafka.sslUserKey }}
+          truststore-certificate: {{ .Values.kafka.sslClusterCertificate }}
+
+    audit:
+      kafka:
+        bootstrap: {{ .Values.kafka.service }}
+        topic: {{ .Values.audit.kafka.topic }}
+        schema-registry-url: {{ .Values.audit.kafka.schemaRegistryUrl }}
+        ssl:
+          enabled: {{ .Values.kafka.sslEnabled }}
+          keystore-certificate: {{ .Values.kafka.sslUserCertificate }}
+          keystore-key: {{ .Values.kafka.sslUserKey }}
+          truststore-certificate: {{ .Values.kafka.sslClusterCertificate }}
