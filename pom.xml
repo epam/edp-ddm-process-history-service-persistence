@@ -27,6 +27,7 @@
     <embedded.database.spring-test.version>2.1.1</embedded.database.spring-test.version>
     <mapstruct.version>1.4.2.Final</mapstruct.version>
     <lombok.version>1.18.18</lombok.version>
+    <spring-boot-maven-plugin.version>2.7.5</spring-boot-maven-plugin.version>
     <sonar.coverage.exclusions>
       **/repository/entity/**,
       **/ProcessHistoryPersistenceApplication*
@@ -302,6 +303,7 @@
       <plugin>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-maven-plugin</artifactId>
+        <version>${spring-boot-maven-plugin.version}</version>
         <executions>
           <execution>
             <goals>
